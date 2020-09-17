@@ -5,6 +5,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
+import pl.droidsonroids.gif.GifDrawable
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initGifLogo()
     }
 
     override fun onResume() {
@@ -53,5 +59,12 @@ class MainActivity : AppCompatActivity() {
     private fun openBrowser(uri: Uri) {
         val browserIntent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(browserIntent)
+    }
+
+    //設定啟動頁的gif logo
+    private fun initGifLogo() {
+        // sample.gif 為使用的gif名稱，存取在assets的資料夾內
+        val gifFromAssets = GifDrawable(assets, "sample.gif")
+        ivGif.setImageDrawable(gifFromAssets)
     }
 }
